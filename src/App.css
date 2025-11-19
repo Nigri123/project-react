@@ -1,1 +1,30 @@
 @import "tailwindcss";
+
+/* Shuriken loading animation */
+.shuriken-spinner {
+  align-items: center;
+}
+.shuriken {
+  display: block;
+  transform-origin: 50% 50%;
+  animation: shuriken-rotate 1s linear infinite;
+}
+.shuriken-1 {
+  animation-duration: 1s;
+}
+.shuriken-2 {
+  animation-duration: 1.2s;
+  animation-direction: reverse;
+}
+.shuriken-3 {
+  animation-duration: 0.9s;
+}
+
+@keyframes shuriken-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
