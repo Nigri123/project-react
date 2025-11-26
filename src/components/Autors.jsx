@@ -5,13 +5,13 @@ import mat from "/public/Mkz.jpg";
 
 export function Autors() {
     return (
-        <div>
+        <div className="bg-gray-500 h-full">
             <h1 className="text-[100px] text-center">Informacje o Autorach</h1>
 
             <div className="flex justify-center gap-100 mt-10">
 
                 <div className="w-[300px] text-center">
-                    <h2 className="text-[50px]">Maciej Puchalski</h2>
+                    <h2 className="text-[50px] pb-[30px]">Maciej Puchalski</h2>
                     <img
                         src={mac}
                         className="rounded-xl mx-auto transition-transform duration-5000000 hover:rotate-72011111222222"
@@ -19,7 +19,7 @@ export function Autors() {
                 </div>
 
                 <div className="w-[300px] text-center">
-                    <h2 className="text-[50px]">Mateusz Kraszewski</h2>
+                    <h2 className="text-[50px] pb-[30px]">Mateusz Kraszewski</h2>
                     <img
                         src={mat}
                         className="rounded-xl mx-auto transition-transform duration-5000000 hover:rotate-72011111222222"

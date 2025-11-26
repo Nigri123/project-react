@@ -11,8 +11,7 @@ const COLLECTIONS = [
   "kekkei-genkai",
   "tailed-beasts",
   "teams",
-  "akatsuki",
-  "kara",
+  "akatsuki"
 ];
 
 const FIELDS = ["name", "height", "family", "jutsu", "naturetype"];
@@ -184,16 +183,12 @@ export function Search() {
       typeof value === "boolean"
     )
       return <span>{String(value)}</span>;
-    return (
-      <pre>
-        {JSON.stringify(value, null, 2)}
-      </pre>
-    );
+    return <pre>{JSON.stringify(value, null, 2)}</pre>;
   }
 
   return (
-    <div>
-      <h2 className="text-center text-2xl">Wyszukiwarka</h2>
+    <div className="bg-gray-500 h-full min-h-[800px]">
+      <h2 className="text-center text-[30px] pt-[30px] mb-[15px]">Wyszukiwarka</h2>
       <form
         onSubmit={onSearch}
         className="flex gap-2 items-center mb-3 justify-center"
@@ -319,7 +314,7 @@ export function Search() {
                           {item._collection}
                         </small>
                       </div>
-                      <div class="mt-2">
+                      <div className="mt-2">
                         <button
                           onClick={() =>
                             setExpandedId((p) => (p === key ? null : key))
@@ -349,17 +344,17 @@ export function Search() {
         </ul>
 
         <div className="flex gap-2 items-center mt-3 justify-center">
-          <button
+          <button className="text-[30px]"
             onClick={() => setPage((p) => Math.max(0, p - 1))}
             disabled={page === 0}
           >
             👈🏿
           </button>
-          <div>
+          <div className="text-[30px]">
             Strona {page + 1} /{" "}
             {Math.max(1, Math.ceil(results.length / PAGE_SIZE))}
           </div>
-          <button
+          <button className="text-[30px]"
             onClick={() =>
               setPage((p) =>
                 Math.min(
