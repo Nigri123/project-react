@@ -13,7 +13,6 @@ const COLLECTIONS = [
   "teams",
   "akatsuki",
   "kara",
-  "jutsu",
 ];
 
 const FIELDS = ["name", "height", "family", "jutsu", "naturetype"];
@@ -185,31 +184,22 @@ export function Search() {
       typeof value === "boolean"
     )
       return <span>{String(value)}</span>;
-    return (
-      <pre style={{ whiteSpace: "pre-wrap", maxWidth: 700 }}>
-        {JSON.stringify(value, null, 2)}
-      </pre>
-    );
+    return <pre>{JSON.stringify(value, null, 2)}</pre>;
   }
 
   return (
     <div>
-      <h2>Wyszukiwarka</h2>
+      <h2 className="text-center text-2xl">Wyszukiwarka</h2>
       <form
         onSubmit={onSearch}
-        style={{
-          display: "flex",
-          gap: 8,
-          alignItems: "center",
-          marginBottom: 12,
-        }}
+        className="flex gap-2 items-center mb-3 justify-center"
       >
         <label>
           Kolekcja:
           <select
             value={collection}
             onChange={(e) => setCollection(e.target.value)}
-            style={{ marginLeft: 6 }}
+            className="ml-2 bg-orange-300 p-1 border border-orange-600 rounded"
           >
             <option value="all">Wszystkie</option>
             {COLLECTIONS.map((c) => (
@@ -225,7 +215,7 @@ export function Search() {
           <select
             value={field}
             onChange={(e) => setField(e.target.value)}
-            style={{ marginLeft: 6 }}
+            className="ml-2 bg-orange-300 p-1 border border-orange-600 rounded"
           >
             <option>id</option>
             {FIELDS.map((c) => (
@@ -242,11 +232,15 @@ export function Search() {
             placeholder="szukana wartość"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            style={{ marginLeft: 6 }}
+            className="ml-2 bg-orange-300 p-1 border border-orange-600 rounded"
           />
         </label>
-
-        <button type="submit">Szukaj</button>
+        <button
+          className="mt-0.5 p-2 border border-orange-700 rounded bg-orange-300 hover:bg-orange-400"
+          type="submit"
+        >
+          Szukaj
+        </button>
       </form>
 
       {loading && (
@@ -287,15 +281,8 @@ export function Search() {
       )}
       {error && <div style={{ color: "crimson" }}>Błąd: {error}</div>}
 
-      <div style={{ marginTop: 12 }}>
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-            alignItems: "center",
-            marginBottom: 8,
-          }}
-        >
+      <div className="mt-3">
+        <div className="flex gap-3 items-center mb-2 justify-center">
           <div>Znaleziono: {results.length}</div>
           <div></div>
         </div>
@@ -307,11 +294,9 @@ export function Search() {
               const key = item.id ?? item._id ?? `${item._collection}-${idx}`;
               const isOpen = expandedId === key;
               return (
-                <li key={key} style={{ marginBottom: 14 }}>
-                  <div
-                    style={{ display: "flex", gap: 12, alignItems: "center" }}
-                  >
-                    <div style={{ flex: "0 0 auto" }}>
+                <li key={key} className="mb-3.5 text-[30px]">
+                  <div className="flex gap-3 items-center justify-center ">
+                    <div className="flex-none items-center justify-center">
                       <img
                         src={item.images?.[0] ?? "/placeholder.svg"}
                         alt={item.name ?? item.title ?? ""}
@@ -320,21 +305,17 @@ export function Search() {
                           e.currentTarget.onerror = null;
                           e.currentTarget.src = "/placeholder.svg";
                         }}
-                        style={{
-                          maxWidth: 100,
-                          height: "auto",
-                          borderRadius: 6,
-                        }}
+                        className="max-w-[500px] h-auto rounded-[6px] items-center justify-center ml-[750px]"
                       />
                     </div>
-                    <div style={{ flex: "1 1 auto" }}>
-                      <div style={{ fontWeight: 700 }}>
+                    <div className="flex-1">
+                      <div className="font-bold">
                         {item.name ?? item.title ?? "(bez nazwy)"}{" "}
-                        <small style={{ marginLeft: 8, color: "#6b7280" }}>
+                        <small className="ml-2 text-gray-400">
                           {item._collection}
                         </small>
                       </div>
-                      <div style={{ marginTop: 6 }}>
+                      <div class="mt-2">
                         <button
                           onClick={() =>
                             setExpandedId((p) => (p === key ? null : key))
@@ -347,14 +328,7 @@ export function Search() {
                   </div>
 
                   {isOpen && (
-                    <div
-                      style={{
-                        marginTop: 8,
-                        padding: 10,
-                        background: "#f8fafc",
-                        borderRadius: 6,
-                      }}
-                    >
+                    <div className="mt-2 p-2.5 bg-[#f8fafc] rounded-[6px]">
                       {Object.entries(item).map(([k, v]) => (
                         <div key={k} style={{ marginBottom: 8 }}>
                           <strong style={{ textTransform: "capitalize" }}>
@@ -370,19 +344,12 @@ export function Search() {
             })}
         </ul>
 
-        <div
-          style={{
-            display: "flex",
-            gap: 8,
-            alignItems: "center",
-            marginTop: 12,
-          }}
-        >
+        <div className="flex gap-2 items-center mt-3 justify-center">
           <button
             onClick={() => setPage((p) => Math.max(0, p - 1))}
             disabled={page === 0}
           >
-            Poprzednia
+            👈🏿
           </button>
           <div>
             Strona {page + 1} /{" "}
@@ -399,7 +366,7 @@ export function Search() {
             }
             disabled={(page + 1) * PAGE_SIZE >= results.length}
           >
-            Następna
+            👉🏿
           </button>
         </div>
       </div>
