@@ -95,7 +95,7 @@ export function Search() {
         } else {
           try {
             if (JSON.stringify(v).toLowerCase().includes(lowerQ)) return true;
-          } catch (e) {}
+          } catch (e) { }
         }
       }
       return false;
@@ -184,7 +184,11 @@ export function Search() {
       typeof value === "boolean"
     )
       return <span>{String(value)}</span>;
-    return <pre>{JSON.stringify(value, null, 2)}</pre>;
+    return (
+      <pre>
+        {JSON.stringify(value, null, 2)}
+      </pre>
+    );
   }
 
   return (
